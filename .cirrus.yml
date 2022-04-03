@@ -6,7 +6,7 @@ task:
   name: "Kernel deploy.."
   timeout_in: 2h
   container:
-      image: panchajanya1999/archlinux:latest
+      image: zenitsuxd/kernel:latest
       cpu: 8
       memory: 32G
 
