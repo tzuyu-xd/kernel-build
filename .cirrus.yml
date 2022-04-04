@@ -11,5 +11,5 @@ task:
       memory: 32G
 
   Build_Kernel_script:
-      - git clone --depth=1 -b AGNi-sdm660 https://github.com/tyuzu-xd/AGNi_pureMIUI lv && cd lv
+      - git clone --depth=1 -b AGNi_sdm660 https://github.com/tyuzu-xd/AGNi_pureMIUI lv && cd lv
       - bash build.sh --llvm
