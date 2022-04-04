@@ -12,10 +12,5 @@ task:
 
   Build_Source_Kernel_script:
       - git clone --depth=1 -b hmp-main https://github.com/tyuzu-xd/android_kernel_xiaomi_lavender-LTO lv && cd lv
-
-  Build_Kernel_Clang_script:
-      - bash clang.sh --proton
-
-  Build_Kernel_Gcc_script:
-      - bash gcc.sh --eva
+      - bash build.sh --proton
       
