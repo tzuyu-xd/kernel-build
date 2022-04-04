@@ -11,6 +11,6 @@ task:
       memory: 32G
 
   Build_Source_Kernel_script:
-      - git clone --depth=1 -b hmp-main https://github.com/tyuzu-xd/android_kernel_xiaomi_lavender-LTO lv && cd lv
+      - git clone --depth=1 -b newcam-hmp https://github.com/tyuzu-xd/kernel_xiaomi_lavender lv && cd lv
       - bash build.sh --proton
       
