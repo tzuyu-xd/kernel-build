@@ -11,6 +11,6 @@ task:
       memory: 32G
 
   Build_Source_Kernel_script:
-      - git clone --depth=1 -b v4.4.xxx_hmp https://github.com/tyuzu-xd/xbore_strmbreakr_lavender lv && cd lv
-      - bash build.sh --llvm
+      - git clone --depth=1 -b oldcam-hmp https://github.com/tyuzu-xd/kernel_xiaomi_lavender lv && cd lv
+      - bash build.sh --proton
       
