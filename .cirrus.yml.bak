@@ -12,6 +12,6 @@ task:
 
   Build_Kernel_script:
       - git clone --depth=1 -b elainaX-11 https://github.com/tyuzu-xd/kernel_xiaomi_ginkgo lv && cd lv
-      - bash build.sh --snapdragon
+      - bash build.sh
  
  
