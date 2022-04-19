@@ -12,4 +12,4 @@ task:
 
   Build_Kernel_script:
       - git clone --depth=1 https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo -b MiuiQ lv && cd lv
-      - bash build.sh --azure
+      - bash build.sh --sdc
