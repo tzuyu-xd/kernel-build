@@ -10,12 +10,8 @@ task:
       cpu: 8
       memory: 32G
 
-  Syct_script:
+  Build_Kernel_script:
       - git clone --depth=1 -b MiuiQ https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo lv && cd lv
-
-   Build_Kernel_Clang_script:
       - bash build-clang.sh
-      
-   Build_Kernel_Gcc_script:
       - bash build-gcc.sh
  
