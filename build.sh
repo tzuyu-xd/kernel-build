@@ -32,6 +32,7 @@ DEFCONFIG=vendor/ginkgo-perf_defconfig
 # Files
 IMAGE=$KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb
 DTBO=$KERNEL_DIR/out/arch/arm64/boot/dtbo.img
+CLANG_VER="$("$KERNEL_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
 
 # Verbose Build
 VERBOSE=0
@@ -57,10 +58,8 @@ function exports() {
         export ARCH=arm64
         export SUBARCH=arm64
         export SDC_DIR="$KERNEL_DIR/CLANG"
-        export GCC_DIR="$KERNEL_DIR/GCC32"
-        export GCC64_DIR="$KERNEL_DIR/GCC64"
         export PATH="${SDC_DIR}/bin:${GCC64_DIR}/bin:${GCC_DIR}/bin:/usr/bin:${PATH}"
-
+        export KBUILD_COMPILER_STRING="$CLANG_VER"
         # Export Local Version
         export LOCALVERSION="-${VERSION}"
         
