@@ -11,6 +11,6 @@ task:
       memory: 32G
 
   Build_Kernel_script:
-      - git clone https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo-1 -b MIUI lv && cd lv
+      - git clone --depth=1 -b MIUI https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo-1 lv && cd lv
       - bash build.sh
  
