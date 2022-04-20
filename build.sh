@@ -114,44 +114,24 @@ START=$(date +"%s")
 	post_msg "<b>$KBUILD_BUILD_VERSION CI Build Triggered</b>%0A<b>Docker OS: </b><code>$DISTRO</code>%0A<b>Kernel Version : </b><code>$KERVER</code>%0A<b>Date : </b><code>$(TZ=Asia/Jakarta date)</code>%0A<b>Device : </b><code>$MODEL [$DEVICE]</code>%0A<b>Pipeline Host : </b><code>$KBUILD_BUILD_HOST</code>%0A<b>Host Core Count : </b><code>$PROCS</code>%0A<b>Compiler Used : </b><code>$PATH</code>%0A<b>Branch : </b><code>$CI_BRANCH</code>%0A<b>Top Commit : </b><a href='$DRONE_COMMIT_LINK'>$COMMIT_HEAD</a>"
 	
 	# Compile
-	if [ -d ${KERNEL_DIR}/clang ];
+    if [ -d ${KERNEL_DIR}/CLANG ];
 	   then
-           make -j$(nproc --all) O=out \
-	       ARCH=arm64 \
-	       CC=clang \
-	       CROSS_COMPILE=aarch64-linux-gnu- \
-	       CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-	       NM=llvm-nm \
-	       OBJCOPY=llvm-objcopy \
-	       OBJDUMP=llvm-objdump \
-	       STRIP=llvm-strip \
-	       V=$VERBOSE 2>&1 | tee error.log
-	elif [ -d ${KERNEL_DIR}/gcc64 ];
-	   then
-	       make -j$(nproc --all) O=out \
-	       ARCH=arm64 \
-	       CROSS_COMPILE_COMPAT=arm-eabi- \
-	       CROSS_COMPILE=aarch64-elf- \
-	       AR=llvm-ar \
-	       NM=llvm-nm \
-	       OBJCOPY=llvm-objcopy \
-	       OBJDUMP=llvm-objdump \
-	       STRIP=llvm-strip \
-	       OBJSIZE=llvm-size \
-	       V=$VERBOSE 2>&1 | tee error.log
-        elif [ -d ${KERNEL_DIR}/aosp-clang ];
-           then
-               make -j$(nproc --all) O=out \
-	       ARCH=arm64 \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       CLANG_TRIPLE=aarch64-linux-gnu- \
-	       CROSS_COMPILE=aarch64-linux-android- \
-	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
+	       make -j$(nproc --all) O=out ARCH=arm64 SUBARCH=arm64 ${DEFCONFIG}
+	       make -j$(nproc --all) ARCH=arm64 SUBARCH=arm64 O=out \
+	       CC=${SDC_DIR}/bin/clang \
+	       NM=${SDC_DIR}/bin/llvm-nm \
+	       AR=${SDC_DIR}/bin/llvm-ar \
+	       AS=${SDC_DIR}/bin/llvm-as \
+	       LD=${SDC_DIR}/bin/ld.lld \
+	       OBJCOPY=${SDC_DIR}/bin/llvm-objcopy \
+	       OBJDUMP=${SDC_DIR}/bin/llvm-objdump \
+	       STRIP=${SDC_DIR}/bin/llvm-strip \
+	       CROSS_COMPILE=${SDC_DIR}/bin/aarch64-linux-gnu- \
+	       CROSS_COMPILE_ARM32=${SDC_DIR}/bin/arm-linux-gnueabi- \
 	       V=$VERBOSE 2>&1 | tee error.log
 	fi
-	
-	# Verify Files
+
+    # Verify Files
 	if ! [ -a "$IMAGE" ];
 	   then
 	       push "error.log" "Build Throws Errors"
