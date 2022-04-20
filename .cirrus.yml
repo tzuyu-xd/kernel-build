@@ -9,8 +9,10 @@ task:
       image: tyuzu/kernel:build
       cpu: 8
       memory: 32G
+      
+  Sync_script:
+      - ./sources.sh
 
   Build_Kernel_script:
-      - git clone --depth=1 https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo -b MiuiQ lv && cd lv
-      - bash build.sh --proton
+      - ./build.sh
  
