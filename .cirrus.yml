@@ -9,10 +9,8 @@ task:
       image: tyuzu/kernel:build
       cpu: 8
       memory: 32G
-      
-  Sync_script:
-      - ./sources.sh
 
   Build_Kernel_script:
-      - ./build.sh
+      - git clone https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo-1 -b MIUI lv && cd lv
+      - bash build.sh
  
