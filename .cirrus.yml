@@ -12,4 +12,4 @@ task:
 
   Build_Kernel_script:
       - git clone --depth=1 -b MiuiQ https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo lv && cd lv
-      - ./build-clang.sh
+      - bash build-clang.sh
