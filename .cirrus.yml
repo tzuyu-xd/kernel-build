@@ -1,6 +1,7 @@
 env:
     TG_TOKEN: "ENCRYPTED[ec5d016600994918b3b1eadf705d4ec5ae41ece4fa34f4ea717eff56c41bcc5a941fa072810fe0933b5aef5d3c473907]"
     TG_CHAT_ID: "ENCRYPTED[57cd2ad497c9857b15613057b07e874566ae5eba7a7b88c27826c488a4c98a5d47768318b6b43de454a62dba99921dbe]"
+    TG_CHANNEL_ID: "ENCRYPTED[54fb36407ec4d20d0ad29069ca86bff9b318f31ebe965ad5674304b0d68c12327797956c0886a8224298c4e5bce14a73]"
     
 task:
   name: "Kernel deploy.."
@@ -12,4 +13,4 @@ task:
 
   Build_Kernel_script:
       - git clone --depth=1 -b MiuiQ https://github.com/tzuyu-xd/android_kernel_xiaomi_ginkgo lv && cd lv
-      - bash build.sh
+      - bash build-miui.sh
